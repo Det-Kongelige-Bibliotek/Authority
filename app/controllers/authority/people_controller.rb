@@ -12,10 +12,49 @@ module Authority
      def edit
      end
 
+     def update
+       respond_to do |format|
+         if @person.update(person_params)
+           format.html { redirect_to @person }
+         else
+           format.html { render :new }
+         end
+       end
+     end
+
+     def new
+       @person = Person.new
+     end
+
+     def create
+       @person = Person.new(person_params)
+
+       respond_to do |format|
+         if @person.save
+           format.html { redirect_to @person }
+         else
+           format.html { render :new }
+         end
+       end
+     end
+
+     def destroy
+       @person.destroy
+       respond_to do |format|
+         format.html { redirect_to people_url }
+       end
+     end
+
      private
 
      def set_person
        @person = ActiveFedora::Base.where(id: URI.unescape(params[:id])).first
+     end
+
+     def person_params
+       params.require(:person).permit(:given_name, :family_name, :_name,
+                                                :description, :birth_date, :death_date,
+                                                same_as_uri:[])
      end
    end
 end
