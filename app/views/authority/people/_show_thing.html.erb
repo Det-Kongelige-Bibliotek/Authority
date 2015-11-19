@@ -1,0 +1,4 @@
+<%= thing.description %>
+<% thing.same_as_uri.each do |uri| %>
+    <%= link_to('same as', uri) if uri.present? %>
+<% end %>
