@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Authority::VERSION
   s.authors     = ["David Grove Jørgensen"]
   s.email       = ["dgj@kb.dk"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Authority."
-  s.description = "TODO: Description of Authority."
+  s.homepage    = "https://github.com/Det-Kongelige-Bibliotek/authority"
+  s.summary     = "Rails engine for authorities in Hydra"
+  s.description = "Rails engine for authorities in Hydra"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

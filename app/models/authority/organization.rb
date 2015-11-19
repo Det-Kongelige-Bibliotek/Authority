@@ -1,5 +1,5 @@
 module Authority
-  class Person < ActiveFedora::Base
+  class Organization < ::ActiveFedora::Base
     include ::Authority::Concern::Thing
   end
 end
