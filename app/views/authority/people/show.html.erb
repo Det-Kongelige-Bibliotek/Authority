@@ -4,6 +4,7 @@
   <h1><%= @person.display_value %></h1>
 
   <%= render partial: 'show_thing', locals: {thing: @person} %>
+  <%= render partial: 'show_person', locals: {person: @person} %>
 
   <%= link_to 'Edit', edit_person_path(@person) %>
 
