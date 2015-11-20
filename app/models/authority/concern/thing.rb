@@ -27,6 +27,18 @@ module Authority
         result
       end
 
+      def date_range(dates={})
+        date = ""
+        date += "#{dates[:start_date]}-" if dates[:start_date].present?
+        if  dates[:end_date].present? then
+          if  dates[:start_date].present? then
+            date += "#{dates[:end_date]}"
+          else
+            date += "-" + "#{dates[:end_date]}"
+          end
+        end
+        date
+      end
 
       def display_value
         value = ''
