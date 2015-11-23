@@ -1,4 +1,47 @@
-<%= thing.description %>
-<% thing.same_as_uri.each do |uri| %>
-    <%= link_to('same as', uri) if uri.present? %>
+<h3>General</h3>
+<table class="table table-striped"><tbody>
+<% if thing._name %>
+    <tr>
+      <td>
+        <strong>Name:</strong>
+      </td>
+      <td>
+        <span><%= thing._name %></span>
+      </td>
+    </tr>
 <% end %>
+<% unless thing.alternate_names.empty? %>
+    <tr>
+      <td>
+        <strong>Alternate names:</strong>
+      </td>
+      <td>
+        <span><%= thing.alternate_names %></span>
+      </td>
+    </tr>
+<% end %>
+<% if thing.description %>
+    <tr>
+      <td>
+        <strong>Description:</strong>
+      </td>
+      <td>
+        <span><%= thing.description %></span>
+      </td>
+    </tr>
+<% end %>
+<% unless thing.same_as_uri.empty? %>
+    <tr>
+      <td>
+        <strong>Same as:</strong>
+      </td>
+      <td>
+        <% thing.same_as_uri.each do |uri| %>
+            <%= link_to('same as', uri) if uri.present? %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+
+
+</tbody></table>

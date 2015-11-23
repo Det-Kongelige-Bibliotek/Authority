@@ -1,0 +1,94 @@
+<h3>Personal details</h3>
+<table class="table table-striped"><tbody>
+<% if person.given_name %>
+    <tr>
+      <td>
+        <strong>Given name:</strong>
+      </td>
+      <td>
+        <span><%= person.given_name %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.family_name %>
+    <tr>
+      <td>
+        <strong>Family name:</strong>
+      </td>
+      <td>
+        <span><%= person.family_name %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.additional_name %>
+    <tr>
+      <td>
+        <strong>Additional name:</strong>
+      </td>
+      <td>
+        <span><%= person.additional_name %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.address %>
+    <tr>
+      <td>
+        <strong>Address:</strong>
+      </td>
+      <td>
+        <span><%= person.address %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.gender %>
+    <tr>
+      <td>
+        <strong>Gender:</strong>
+      </td>
+      <td>
+        <span><%= person.gender %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.job_title %>
+    <tr>
+      <td>
+        <strong>Job title:</strong>
+      </td>
+      <td>
+        <span><%= person.job_title %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.email %>
+    <tr>
+      <td>
+        <strong>Email address:</strong>
+      </td>
+      <td>
+        <span><%= person.email %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.birth_date %>
+    <tr>
+      <td>
+        <strong>Birth date:</strong>
+      </td>
+      <td>
+        <span><%= person.birth_date %></span>
+      </td>
+    </tr>
+<% end %>
+<% if person.death_date %>
+    <tr>
+      <td>
+        <strong>Death date:</strong>
+      </td>
+      <td>
+        <span><%= person.death_date %></span>
+      </td>
+    </tr>
+<% end %>
+
+</tbody></table>
