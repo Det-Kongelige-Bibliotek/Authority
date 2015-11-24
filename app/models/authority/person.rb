@@ -15,7 +15,7 @@ module Authority
     property :children, predicate: ::RDF::Vocab::SCHEMA.children, multiple: false
     property :death_date, predicate: ::RDF::Vocab::SCHEMA.deathDate, multiple: false
     property :death_place, predicate: ::RDF::Vocab::SCHEMA.deathPlace, multiple: false
-    property :email, predicate: ::RDF::Vocab::SCHEMA.email, multiple: false do |index|
+    property :email, predicate: ::RDF::Vocab::SCHEMA.email, multiple: true do |index|
       index.as :stored_searchable
     end
     property :family_name, predicate: ::RDF::Vocab::SCHEMA.familyName, multiple: false do |index|
@@ -30,7 +30,7 @@ module Authority
     property :job_title, predicate: ::RDF::Vocab::SCHEMA.jobTitle, multiple: false
     property :member_of, predicate: ::RDF::Vocab::SCHEMA.memberOf, multiple: false
     property :nationality, predicate: ::RDF::Vocab::SCHEMA.nationality, multiple: false
-    property :parent, predicate: ::RDF::Vocab::SCHEMA.parent, multiple: false
+    property :_parent, predicate: ::RDF::Vocab::SCHEMA.parent, multiple: false
     property :performer_in, predicate: ::RDF::Vocab::SCHEMA.performerIn, multiple: false
     property :related_to, predicate: ::RDF::Vocab::SCHEMA.relatedTo, multiple: false
     property :sibling, predicate: ::RDF::Vocab::SCHEMA.sibling, multiple: false
