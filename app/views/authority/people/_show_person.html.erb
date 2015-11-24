@@ -1,6 +1,6 @@
 <h3>Personal details</h3>
 <table class="table table-striped"><tbody>
-<% if person.given_name %>
+<% unless person.given_name.blank? %>
     <tr>
       <td>
         <strong>Given name:</strong>
@@ -10,7 +10,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.family_name %>
+<% unless person.family_name.blank? %>
     <tr>
       <td>
         <strong>Family name:</strong>
@@ -20,7 +20,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.additional_name %>
+<% unless person.additional_name.blank? %>
     <tr>
       <td>
         <strong>Additional name:</strong>
@@ -30,7 +30,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.address %>
+<% unless person.address.blank? %>
     <tr>
       <td>
         <strong>Address:</strong>
@@ -40,7 +40,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.gender %>
+<% unless person.gender.blank? %>
     <tr>
       <td>
         <strong>Gender:</strong>
@@ -50,7 +50,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.job_title %>
+<% unless person.job_title.blank? %>
     <tr>
       <td>
         <strong>Job title:</strong>
@@ -60,7 +60,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.email %>
+<% unless person.email.blank? %>
     <tr>
       <td>
         <strong>Email address:</strong>
@@ -70,7 +70,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.birth_date %>
+<% unless person.birth_date.blank? %>
     <tr>
       <td>
         <strong>Birth date:</strong>
@@ -80,7 +80,7 @@
       </td>
     </tr>
 <% end %>
-<% if person.death_date %>
+<% unless person.death_date.blank? %>
     <tr>
       <td>
         <strong>Death date:</strong>
