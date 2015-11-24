@@ -12,6 +12,7 @@ module Authority
         property :alternate_names, predicate: ::RDF::Vocab::SCHEMA.alternateName, multiple: true
       end
 
+      #setters
       def same_as_uri=(uris)
         self.same_as = []
         uris.each do |uri|
@@ -19,6 +20,11 @@ module Authority
         end
       end
 
+      def set_name=(full_name)
+        self._name = full_name
+      end
+
+      #getters
       def same_as_uri
         result = []
         self.same_as.each do |s|
@@ -30,8 +36,8 @@ module Authority
       def date_range(dates={})
         date = ""
         date += "#{dates[:start_date]}-" if dates[:start_date].present?
-        if  dates[:end_date].present? then
-          if  dates[:start_date].present? then
+        if dates[:end_date].present? then
+          if dates[:start_date].present? then
             date += "#{dates[:end_date]}"
           else
             date += "-" + "#{dates[:end_date]}"
