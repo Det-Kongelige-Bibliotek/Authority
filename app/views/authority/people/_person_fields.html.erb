@@ -25,7 +25,10 @@
   </div>
   <div>
     <%= label person, :email, 'Email' %>
-    <%= text_field person, :email %>
+    <% @person.email.each do |email| %>
+        <%= text_field person, :email, :multiple => true, :value => email %>
+    <% end %>
+    <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
   </div>
   <div>
     <%= label person, :birth_date, 'Birth date' %>
