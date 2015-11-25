@@ -1,40 +1,82 @@
 <h3>Personal details</h3>
-<div id="bibliographic">
-  <div>
-    <%= label person, :given_name, 'Given name' %>
-    <%= text_field person, :given_name %>
+<table class="table table-striped">
+  <tbody>
 
-    <%= label person, :family_name, 'Family name' %>
-    <%= text_field person, :family_name %>
-
-    <%= label person, :additional_name, 'Additional name' %>
-    <%= text_field person, :additional_name %>
-  </div>
-
-  <div>
-    <%= label person, :address, 'Address' %>
-    <%= text_field person, :address %>
-  </div>
-  <div>
-    <%= label person, :gender, 'Gender' %>
-    <%= text_field person, :gender %>
-  </div>
-  <div>
-    <%= label person, :job_title, 'Job title' %>
-    <%= text_field person, :job_title %>
-  </div>
-  <div>
-    <%= label person, :email, 'Email' %>
+  <tr>
+    <td>
+      <strong><%= label person, :given_name, 'Given name:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :given_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :family_name, 'Family name:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :family_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :additional_name, 'Additional name:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :additional_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :address, 'Address:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :address %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :gender, 'Gender:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :gender %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :job_title, 'Job title:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :job_title %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :email, 'Email:' %></strong>
+    </td>
+    <td>
     <% @person.email.each do |email| %>
-        <%= text_field person, :email, :multiple => true, :value => email %>
+          <%= text_field person, :email, :multiple => true, :value => email %>
     <% end %>
     <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
-  </div>
-  <div>
-    <%= label person, :birth_date, 'Birth date' %>
-    <%= text_field person, :birth_date %>
-    <%= label person, :death_date, 'Death date' %>
-    <%= text_field person, :death_date %>
-  </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :birth_date, 'Birth date:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :birth_date %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :death_date, 'Death date:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :death_date %>
+    </td>
+  </tr>
 
-</div>
+  </tbody>
+</table>
