@@ -28,6 +28,14 @@
   </tr>
   <tr>
     <td>
+      <strong><%= label person, :award, 'Award:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :award %>
+    </td>
+  </tr>
+  <tr>
+    <td>
       <strong><%= label person, :address, 'Address:' %></strong>
     </td>
     <td>
@@ -75,6 +83,22 @@
     </td>
     <td>
       <%= text_field person, :death_date %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :honorific_prefix, 'Honorific prefix:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :honorific_prefix %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label person, :honorific_suffix, 'Honorific suffix:' %></strong>
+    </td>
+    <td>
+      <%= text_field person, :honorific_suffix %>
     </td>
   </tr>
 

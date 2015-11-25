@@ -31,6 +31,16 @@
         </td>
       </tr>
   <% end %>
+  <% unless person.award.blank? %>
+      <tr>
+        <td>
+          <strong>Award:</strong>
+        </td>
+        <td>
+          <span><%= person.award %></span>
+        </td>
+      </tr>
+  <% end %>
   <% unless person.address.blank? %>
       <tr>
         <td>
@@ -88,6 +98,26 @@
         </td>
         <td>
           <span><%= person.death_date %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless person.honorific_prefix.blank? %>
+      <tr>
+        <td>
+          <strong>Honorific prefix:</strong>
+        </td>
+        <td>
+          <span><%= person.honorific_prefix %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless person.honorific_suffix.blank? %>
+      <tr>
+        <td>
+          <strong>Honorific suffix:</strong>
+        </td>
+        <td>
+          <span><%= person.honorific_suffix %></span>
         </td>
       </tr>
   <% end %>

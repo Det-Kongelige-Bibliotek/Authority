@@ -54,9 +54,10 @@ module Authority
      def person_params
        params.require(:person).permit( :_name, :description,
                                        :given_name, :family_name, :additional_name,
+                                       :award,
                                        :birth_date, :death_date,
-                                       :address, :gender, :job_title, email: [],
-                                       same_as_uri:[])
+                                       :address, :gender, :job_title, :honorific_prefix, :honorific_suffix,
+                                       email: [], same_as_uri:[])
      end
    end
 end
