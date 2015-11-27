@@ -1,4 +1,12 @@
 <h3>Personal details</h3>
+<div class="form-inline">
+  <%= text_field person, :same_as, :id => "myViafId" %>
+  <button id='import_viaf' class="btn btn-default" type="button" onclick="viafImport();">
+    Import from VIAF
+  </button>
+  <%= #Hidden field for the URI
+      text_field person, :same_as_uri, :hidden => true, :multiple => true %>
+</div>
 <table class="table table-striped">
   <tbody>
 
@@ -63,10 +71,14 @@
       <strong><%= label person, :email, 'Email:' %></strong>
     </td>
     <td>
-    <% @person.email.each do |email| %>
-          <%= text_field person, :email, :multiple => true, :value => email %>
-    <% end %>
-    <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
+      <% if !@person.email.empty? %>
+          <% @person.email.each do |email| %>
+              <%= text_field person, :email, :multiple => true, :value => email %>
+          <% end %>
+      <% else %>
+          <%= text_field person, :email, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
     </td>
   </tr>
   <tr>
