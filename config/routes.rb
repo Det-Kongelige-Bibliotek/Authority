@@ -3,6 +3,5 @@ Authority::Engine.routes.draw do
     get 'viaf', on: :collection
   end
 
-  resources :organization do
-  end
+  resources :organization
 end
