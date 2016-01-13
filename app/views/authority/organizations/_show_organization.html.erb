@@ -1,0 +1,66 @@
+<h3>Organization details</h3>
+<table class="table table-striped">
+  <tbody>
+   <% unless organization.address.blank? %>
+      <tr>
+        <td>
+          <strong>Address:</strong>
+        </td>
+        <td>
+          <span><%= organization.address %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless organization.contact_point.blank? %>
+      <tr>
+        <td>
+          <strong>Contact Point:</strong>
+        </td>
+        <td>
+          <span><%= organization.contact_point %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless organization.department.blank? %>
+      <tr>
+        <td>
+          <strong>Department:</strong>
+        </td>
+        <td>
+          <span><%= organization.department %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless organization.email.blank? %>
+      <tr>
+        <td>
+          <strong>Email address:</strong>
+        </td>
+        <td>
+          <span><%= @organization.email.join(", ") %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless organization.globbal_location_number.blank? %>
+      <tr>
+        <td>
+          <strong>GLN:</strong>
+        </td>
+        <td>
+          <span><%= organization.globbal_location_number %></span>
+        </td>
+      </tr>
+  <% end %>
+  <% unless organization.telephone.blank? %>
+      <tr>
+        <td>
+          <strong>telephone:</strong>
+        </td>
+        <td>
+          <span><%= organization.telephone %></span>
+        </td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

@@ -1,12 +1,12 @@
 require_dependency "authority/application_controller"
 
 module Authority
-  class OrganizationController < ApplicationController
+  class OrganizationsController < ApplicationController
 
         before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
         def index
-          @org = Authority::Organization.all
+          @organizations = Authority::Organization.all
         end
 
         def show
@@ -44,11 +44,16 @@ module Authority
         def destroy
           @organization.destroy
           respond_to do |format|
-            format.html { redirect_to organization_url }
+            format.html { redirect_to organizations_url }
           end
         end
 
         private
+
+        def organization_params
+          params.require(:organization).permit( :_name, :description,
+                                          :address, email: [])
+        end
 
         def set_organization
           @organization = ActiveFedora::Base.where(id: URI.unescape(params[:id])).first

@@ -32,8 +32,8 @@
     </td>
     <td>
       <% if !@organization.email.empty? %>
-          <% @person.email.each do |email| %>
-              <%= text_field person, :email, :multiple => true, :value => email %>
+          <% @organization.email.each do |email| %>
+              <%= text_field organization, :email, :multiple => true, :value => email %>
           <% end %>
       <% else %>
           <%= text_field organization, :email, :multiple => true %>

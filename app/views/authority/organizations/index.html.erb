@@ -1,0 +1,23 @@
+<h1><%= t('.list', var: @klazz.to_s) %></h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.display_value, organization %></td>
+        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+        <td><%= link_to 'Delete', organization_path(organization), method: :delete, data: { confirm: 'Confirm'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Organization', new_organization_path %>
