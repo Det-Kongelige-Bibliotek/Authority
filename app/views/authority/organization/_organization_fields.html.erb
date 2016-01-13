@@ -1,0 +1,61 @@
+<h3>Organization details</h3>
+
+<table class="table table-striped">
+  <tbody>
+  <tr>
+    <td>
+      <strong><%= label organization, :address, 'Address:' %></strong>
+    </td>
+    <td>
+      <%= text_field organization, :address %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label organization, :contact_point, 'Contact Point:' %></strong>
+    </td>
+    <td>
+      <%= text_field organization, :contact_point %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label organization, :department, 'Department:' %></strong>
+    </td>
+    <td>
+      <%= text_field organization, :department %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label organization, :email, 'Email:' %></strong>
+    </td>
+    <td>
+      <% if !@organization.email.empty? %>
+          <% @person.email.each do |email| %>
+              <%= text_field person, :email, :multiple => true, :value => email %>
+          <% end %>
+      <% else %>
+          <%= text_field organization, :email, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label organization, :globbal_location_number, 'GLN:' %></strong>
+    </td>
+    <td>
+      <%= text_field organization, :globbal_location_number %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong><%= label organization, :telephone, 'Telephone:' %></strong>
+    </td>
+    <td>
+      <%= text_field organization, :telephone %>
+    </td>
+  </tr>
+  </tbody>
+</table>
