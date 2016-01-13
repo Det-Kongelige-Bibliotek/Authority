@@ -4,7 +4,7 @@ Authority::Engine.routes.draw do
   end
 
   get 'finder/:q' => 'finder#search'
-  get 'finder/search/:q', to: 'finder#search'
+  get 'finder/search/:model/:q', to: 'finder#search'
   get 'finder/getobj/:id', to: 'finder#get_obj'
   get 'finder/searchbysameasuri/', to: 'finder#search_by_same_as_uri'
 end

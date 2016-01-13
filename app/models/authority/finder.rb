@@ -6,17 +6,13 @@ module Authority
       ActiveFedora::SolrService.query("id:#{id}")
     end
 
-    def self.all_people(q=nil)
-      self.all_things(q,'Authority*Person')
-    end
-
-    def self.all_organizations(q=nil)
-      self.all_things(q,'Authority*Organization')
-    end
-
     def self.all_things(q,model)
       solr_q = "typeahead_tesim:#{q}*"
-      ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:#{model}", :sort =>'display_value_ssi asc')
+      unless model == 'all'
+        ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:Authority*#{model}", :sort =>'display_value_ssi asc')
+      else
+        ActiveFedora::SolrService.query(solr_q, :sort =>'display_value_ssi asc')
+      end
     end
 
     def self.model_query(model)
@@ -26,6 +22,5 @@ module Authority
     def self.max_rows
       1000000
     end
-
   end
 end
