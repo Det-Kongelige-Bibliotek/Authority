@@ -1,5 +1,5 @@
 module Authority
   class ApplicationController < ActionController::Base
-    layout "application"
+    layout 'application' # use the parent appliactions layout
   end
 end
