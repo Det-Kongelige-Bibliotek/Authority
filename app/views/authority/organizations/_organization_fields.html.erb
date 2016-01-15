@@ -15,7 +15,14 @@
       <strong><%= label organization, :contact_point, 'Contact Point:' %></strong>
     </td>
     <td>
-      <%= text_field organization, :contact_point %>
+      <% if !@organization.contact_point.empty? %>
+          <% @organization.contact_point.each do |contact_p| %>
+              <%= text_field organization, :contact_point, :multiple => true, :value => contact_p %>
+          <% end %>
+      <% else %>
+          <%= text_field organization, :contact_point, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
     </td>
   </tr>
   <tr>
@@ -54,7 +61,14 @@
       <strong><%= label organization, :telephone, 'Telephone:' %></strong>
     </td>
     <td>
-      <%= text_field organization, :telephone %>
+      <% if !@organization.telephone.empty? %>
+          <% @organization.telephone.each do |tele| %>
+              <%= text_field organization, :telephone, :multiple => true, :value => tele %>
+          <% end %>
+      <% else %>
+          <%= text_field organization, :telephone, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
     </td>
   </tr>
   </tbody>

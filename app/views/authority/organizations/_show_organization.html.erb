@@ -17,7 +17,7 @@
           <strong>Contact Point:</strong>
         </td>
         <td>
-          <span><%= organization.contact_point %></span>
+          <span><%= organization.contact_point.join(", ") %></span>
         </td>
       </tr>
   <% end %>
@@ -57,7 +57,7 @@
           <strong>telephone:</strong>
         </td>
         <td>
-          <span><%= organization.telephone %></span>
+          <span><%= organization.telephone.join(", ") %></span>
         </td>
       </tr>
   <% end %>

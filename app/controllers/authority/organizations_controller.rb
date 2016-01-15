@@ -51,8 +51,9 @@ module Authority
         private
 
         def organization_params
-          params.require(:organization).permit( :_name, :description,
-                                          :address, email: [])
+          params.require(:organization).permit( :_name, :description, :department,
+                                                :address, :globbal_location_number, alternate_names: [],
+                                                email: [], contact_point: [], telephone: [])
         end
 
         def set_organization

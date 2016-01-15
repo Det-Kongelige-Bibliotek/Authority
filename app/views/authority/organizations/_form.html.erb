@@ -1,5 +1,5 @@
 <%= form_for(@organization) do |f| %>
-    <%= render partial: 'thing_fields', locals: {f: f, thing: :organization} %>
+    <%= render partial: 'authority/tings/thing_fields', locals: {f: f,thing: @organization} %>
     <%= render partial: 'organization_fields', locals: {f: f, organization: :organization} %>
     <%= f.submit 'Gem Organization' %>
 <% end %>

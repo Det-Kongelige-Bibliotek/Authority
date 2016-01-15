@@ -77,7 +77,7 @@
                                        :award,
                                        :birth_date, :death_date,
                                        :address, :gender, :job_title, :honorific_prefix, :honorific_suffix,
-                                       email: [], same_as_uri:[])
+                                       email: [], same_as_uri:[], alternate_names: [])
      end
    end
 end

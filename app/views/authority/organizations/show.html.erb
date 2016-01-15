@@ -3,7 +3,7 @@
 <div class="container">
   <h1><%= @organization.display_value %></h1>
 
-  <%= render partial: 'show_thing', locals: {thing: @organization} %>
+  <%= render partial: 'authority/things/show_thing', locals: {thing: @organization} %>
   <%= render partial: 'show_organization', locals: {organization: @organization} %>
 
   <%= link_to 'Edit', edit_organization_path(@organization) %>

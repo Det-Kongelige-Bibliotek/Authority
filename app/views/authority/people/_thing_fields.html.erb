@@ -11,10 +11,17 @@
   </tr>
   <tr>
     <td>
-      <strong><%= label thing, :alternate_names, 'Alternate names:' %></strong>
+      <strong><%= label thing, :alternate_names, 'Alternate Names:' %></strong>
     </td>
     <td>
-      <%= text_field thing, :alternate_names %>
+      <% if !@organization.alternate_names.empty? %>
+          <% @organization.alternate_names.each do |alternateN| %>
+              <%= text_field organization, :alternate_names, :multiple => true, :value => alternateN %>
+          <% end %>
+      <% else %>
+          <%= text_field thing, :alternate_names, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
     </td>
   </tr>
   <tr>
