@@ -3,6 +3,8 @@ Authority::Engine.routes.draw do
     get 'viaf', on: :collection
   end
 
+  resources :organizations
+
   get 'finder/:q' => 'finder#search'
   get 'finder/search/:model/:q', to: 'finder#search'
   get 'finder/getobj/:id', to: 'finder#get_obj'
