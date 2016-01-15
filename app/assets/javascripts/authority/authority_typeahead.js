@@ -16,6 +16,7 @@
           typeahead_field = $(ctl).next(".twitter-typeahead").find("#"+ctl.id + "_typeahead");
           typeahead_field.typeahead("destroy");
           typeahead_field.remove();
+            $(ctl).show();
         } else {
             typeahead_field = $(ctl).clone().attr("id", ctl.id + "_typeahead").removeAttr("name");
 
@@ -61,6 +62,8 @@
                 });
             }
 
+            // hide input field
+            $(ctl).hide()
         }
     };
 
