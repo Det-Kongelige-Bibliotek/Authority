@@ -1,3 +1,5 @@
+require_dependency "authority/application_controller"
+
 module Authority
   class FinderController < ApplicationController
     def search

@@ -1,4 +1,6 @@
- module Authority
+require_dependency "authority/application_controller"
+
+module Authority
    class PeopleController < ApplicationController
      before_action :set_person, only: [:show, :edit, :update, :destroy]
 
