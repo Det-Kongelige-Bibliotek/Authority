@@ -2,4 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'back', people_url %>
+<%= link_to 'back', people_url unless params['modal'].present? %>

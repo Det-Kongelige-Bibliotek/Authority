@@ -1,7 +1,17 @@
 require_dependency "authority/application_controller"
 
 module Authority
+   include Authority::Concerns::ModalLayout
+
    class PeopleController < ApplicationController
+     before_filter do
+       if params['modal'].present?
+          self.class.layout  'modal' if params['modal'].present?
+          logger.debug("modal is present ")
+       else
+         self.class.layout  'application'
+       end
+     end
      before_action :set_person, only: [:show, :edit, :update, :destroy]
 
      def index
@@ -34,8 +44,10 @@ module Authority
        respond_to do |format|
          if @person.save
            format.html { redirect_to @person }
+           format.json  {render json: {id: @person.id, name: @person._name.force_encoding("UTF-8") } }
          else
            format.html { render :new }
+           format.json { render json: @person.errors, status: :unprocessable_entity }
          end
        end
      end

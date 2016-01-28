@@ -2,8 +2,9 @@ require_dependency "authority/application_controller"
 
 module Authority
   class OrganizationsController < ApplicationController
-
-        before_action :set_organization, only: [:show, :edit, :update, :destroy]
+       include Authority::Concerns::ModalLayout
+       before_action :set_layout, only: [:show]
+       before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
         def index
           @organizations = Authority::Organization.all
@@ -19,8 +20,11 @@ module Authority
           respond_to do |format|
             if @organization.update(organization_params)
               format.html { redirect_to @organization }
+              format.json { render :json, @organization }
             else
               format.html { render :new }
+              format.json { render :json, @organization.errors, status: :unprocessable_entity }
+
             end
           end
         end

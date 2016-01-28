@@ -1,5 +1,5 @@
 <%= form_for(@organization) do |f| %>
     <%= render partial: 'authority/things/thing_fields', locals: {f: f,thing: @organization} %>
     <%= render partial: 'organization_fields', locals: {f: f, organization: :organization} %>
-    <%= f.submit 'Gem Organization' %>
+    <%= f.submit 'Gem Organization'  unless params['modal'].present? %>
 <% end %>
