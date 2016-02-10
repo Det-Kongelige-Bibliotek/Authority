@@ -3,7 +3,7 @@ require_dependency "authority/application_controller"
 module Authority
   class FinderController < ApplicationController
     def search
-      result = map_result(Finder.all_things(params[:q],params[:model]))
+      result = map_result(Finder.all_things(params[:term],params[:model]))
       render json:  result
     end
 
@@ -28,7 +28,7 @@ module Authority
     private
 
     def map_result(result)
-      result = result.map {|doc| { :val => doc['display_value_ssm'].try(:first),:id => doc['id']} }
+      result = result.map {|doc| { :value => doc['display_value_ssm'].try(:first),:id => doc['id']} }
     end
   end
 end

@@ -7,7 +7,8 @@ module Authority
     end
 
     def self.all_things(q,model)
-      solr_q = "typeahead_tesim:#{q}*"
+      q = q.downcase if q.present?
+      solr_q = "typeahead_tesim:#{q}* || typeahead_tesim:#{q}"
       unless model == 'all'
         ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:Authority*#{model}", :sort =>'display_value_ssi asc')
       else

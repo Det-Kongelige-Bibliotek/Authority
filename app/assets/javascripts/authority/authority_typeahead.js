@@ -13,42 +13,24 @@
     $.authority_typeahead = function( ctl, options ) {
 
         if (options.remove) {
-          typeahead_field = $(ctl).next(".twitter-typeahead").find("#"+ctl.id + "_typeahead");
-          typeahead_field.typeahead("destroy");
+          typeahead_field = $(ctl).next("#"+ctl.id + "_typeahead");
+          typeahead_field.autocomplete("destroy");
           typeahead_field.remove();
             $(ctl).show();
         } else {
-            typeahead_field = $(ctl).clone().attr("id", ctl.id + "_typeahead").removeAttr("name");
-
+            typeahead_field = $(ctl).clone().attr("id", ctl.id + "_typeahead").removeAttr("name").removeAttr("data-function").removeAttr("data-model");
             typeahead_field.insertAfter(ctl);
-
-            var localagents = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.whitespace,
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                limit: 10,
-                remote: {
-                    url: '/authority/finder/search/' + options.model + '/%QUERY',
-                    wildcard: '%QUERY'
+            typeahead_field.autocomplete({
+                source: '/authority/finder/search/' + options.model + '/',
+                minLength: 2,
+                select: function( event, ui ) {
+                    if (ui.item) {
+                        $("#" + ctl.id).val(ui.item.id);
+                    } else {
+                        alert("Could not find the person " + this.val + ". Try creating a new person object");
+                    }
                 }
             });
-
-            typeahead_field.typeahead({
-                    minLength: 1,
-                    highlight: true
-                },
-                {
-                    name: 'Agents',
-                    source: localagents,
-                    displayKey: 'val',
-                    templates: {
-                        header: '<h3 class="agent-source">Valhal</h3>',
-                        empty: '<div class="empty-message">Ingen agenter fundet. Opret evt. en ny</div>'
-                    }
-                }).bind('typeahead:select', function (event, suggestion) {
-                    $("#" + ctl.id).val(suggestion.id);
-                });
-
-            // update the typeahead field
 
             if ($(ctl).val() != "") {
                 $.ajax({
@@ -57,12 +39,12 @@
                     url: '/authority/finder/getobj/' + encodeURIComponent($(ctl).val()),
                     dataType: 'json',
                     success: function (data) {
-                        typeahead_field.val(data.val);
+                        typeahead_field.val(data.value);
                     }
                 });
             }
 
-            // hide input field
+            // hide the original input field
             $(ctl).hide()
         }
     };
