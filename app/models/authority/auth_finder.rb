@@ -1,6 +1,6 @@
 # This class should be called statically to execute common Solr queries
 module Authority
-  class Finder
+  class AuthFinder
 
     def self.obj(id)
       ActiveFedora::SolrService.query("id:#{id}")

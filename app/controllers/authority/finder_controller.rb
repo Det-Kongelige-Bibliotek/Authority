@@ -3,12 +3,12 @@ require_dependency "authority/application_controller"
 module Authority
   class FinderController < ApplicationController
     def search
-      result = map_result(Finder.all_things(params[:term],params[:model]))
+      result = map_result(AuthFinder.all_things(params[:term],params[:model]))
       render json:  result
     end
 
     def get_obj
-      result = map_result(Finder.obj(URI.unescape(params[:id])))
+      result = map_result(AuthFinder.obj(URI.unescape(params[:id])))
       if result.empty?
         render :nothing => true, :status => '404'
       else
@@ -17,7 +17,7 @@ module Authority
     end
 
     def search_by_same_as_uri
-      result = map_result(Finder.search_by_same_as_uri(params[:uri]))
+      result = map_result(AuthFinder.search_by_same_as_uri(params[:uri]))
       if result.empty?
         render :nothing => true, :status => '404'
       else
