@@ -64,5 +64,15 @@ module Authority
       self.date_range(start_date: birth_date, end_date: death_date)
     end
 
+    # TODO: Look into removing this
+    def self.find_or_create_person(forename,surname)
+      logger.warn "find_or_create_person is deprecated. User find_or_create instead"
+      person = Person.where(:given_name => forename, :family_name => surname).first
+      if person.nil?
+        person = Person.create(:given_name => forename, :family_name => surname )
+      end
+      person
+    end
+
   end
 end
