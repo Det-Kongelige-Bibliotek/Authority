@@ -2,7 +2,14 @@ require_dependency "authority/application_controller"
 
 module Authority
   class OrganizationsController < ApplicationController
-       include Authority::Concerns::ModalLayout
+        before_filter do
+          if params['modal'].present?
+            self.class.layout  'modal' if params['modal'].present?
+            logger.debug("modal is present ")
+          else
+            self.class.layout  'application'
+          end
+        end
        before_action :set_layout, only: [:show]
        before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
@@ -18,13 +25,10 @@ module Authority
 
         def update
           respond_to do |format|
-            if @organization.update(organization_params)
+            if @organization.update(person_params)
               format.html { redirect_to @organization }
-              format.json { render :json, @organization }
             else
               format.html { render :new }
-              format.json { render :json, @organization.errors, status: :unprocessable_entity }
-
             end
           end
         end
@@ -39,8 +43,10 @@ module Authority
           respond_to do |format|
             if @organization.save
               format.html { redirect_to @organization }
+              format.json  {render json: {id: @organization.id, name: @organization._name.force_encoding("UTF-8") } }
             else
               format.html { render :new }
+              format.json { render json: @organization.errors, status: :unprocessable_entity }
             end
           end
         end
