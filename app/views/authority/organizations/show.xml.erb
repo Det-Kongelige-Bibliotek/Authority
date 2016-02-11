@@ -1,0 +1,1 @@
+<%= @organization.as_json.merge({"type"=>"organization","name"=>@organization._name}).to_xml(:root => 'authority').html_safe %>

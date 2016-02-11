@@ -1,0 +1,1 @@
+<%= @person.as_json.merge({"type"=>"person"}).to_xml(:root => 'authority').html_safe %>
