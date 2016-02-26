@@ -7,13 +7,17 @@
   <% if !@person.same_as_uri.empty? %>
       <% @person.same_as_uri.each do |uri| %>
           <%= #Hidden field for the URI
-              text_field person, :same_as_uri, :hidden => true,:multiple => true, :value => uri %>
+              text_field person, :same_as_uri, :hidden => true, :multiple => true, :value => uri %>
       <% end %>
   <% else %>
       <%= #Hidden field for the URI
           text_field person, :same_as_uri, :hidden => true, :multiple => true %>
   <% end %>
+  <button id='create_unknown' class="btn btn-default" type="button" onclick="fill_unknown_fields();">
+    Unknown Person
+  </button>
 </div>
+
 <table class="table table-striped">
   <tbody>
 
@@ -41,22 +45,22 @@
       <%= text_field person, :additional_name %>
     </td>
   </tr>
-  <tr>
+  <!--<tr>
     <td>
-      <strong><%= label person, :award, 'Award:' %></strong>
+      <strong><%#= label person, :award, 'Award:' %></strong>
     </td>
     <td>
-      <%= text_field person, :award %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong><%= label person, :address, 'Address:' %></strong>
-    </td>
-    <td>
-      <%= text_field person, :address %>
+      <%#= text_field person, :award %>
     </td>
   </tr>
+  <tr>
+    <td>
+      <strong><%#= label person, :address, 'Address:' %></strong>
+    </td>
+    <td>
+      <%#= text_field person, :address %>
+    </td>
+  </tr>-->
   <tr>
     <td>
       <strong><%= label person, :gender, 'Gender:' %></strong>
@@ -65,29 +69,29 @@
       <%= text_field person, :gender %>
     </td>
   </tr>
-  <tr>
+  <!--<tr>
     <td>
-      <strong><%= label person, :job_title, 'Job title:' %></strong>
+      <strong><%#= label person, :job_title, 'Job title:' %></strong>
     </td>
     <td>
-      <%= text_field person, :job_title %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong><%= label person, :email, 'Email:' %></strong>
-    </td>
-    <td>
-      <% if !@person.email.empty? %>
-          <% @person.email.each do |email| %>
-              <%= text_field person, :email, :multiple => true, :value => email %>
-          <% end %>
-      <% else %>
-          <%= text_field person, :email, :multiple => true %>
-      <% end %>
-      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
+      <%#= text_field person, :job_title %>
     </td>
   </tr>
+  <tr>
+    <td>
+      <strong><%#= label person, :email, 'Email:' %></strong>
+    </td>
+    <td>
+      <%# if !@person.email.empty? %>
+          <%# @person.email.each do |email| %>
+              <%#= text_field person, :email, :multiple => true, :value => email %>
+          <%# end %>
+      <%# else %>
+          <%#= text_field person, :email, :multiple => true %>
+      <%# end %>
+      <%#= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
+    </td>
+  </tr>-->
   <tr>
     <td>
       <strong><%= label person, :birth_date, 'Birth date:' %></strong>
@@ -104,22 +108,22 @@
       <%= text_field person, :death_date %>
     </td>
   </tr>
-  <tr>
+  <!--<tr>
     <td>
-      <strong><%= label person, :honorific_prefix, 'Honorific prefix:' %></strong>
+      <strong><%#= label person, :honorific_prefix, 'Honorific prefix:' %></strong>
     </td>
     <td>
-      <%= text_field person, :honorific_prefix %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong><%= label person, :honorific_suffix, 'Honorific suffix:' %></strong>
-    </td>
-    <td>
-      <%= text_field person, :honorific_suffix %>
+      <%#= text_field person, :honorific_prefix %>
     </td>
   </tr>
+  <tr>
+    <td>
+      <strong><%#= label person, :honorific_suffix, 'Honorific suffix:' %></strong>
+    </td>
+    <td>
+      <%#= text_field person, :honorific_suffix %>
+    </td>
+  </tr>-->
 
   </tbody>
 </table>
