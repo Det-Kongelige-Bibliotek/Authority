@@ -29,7 +29,7 @@ function viafImport() {
     });
 }
 // Function for the VIAF autocomplete
-$(document).ready(function(){
+function viaf_autocomplete(){
 
     var viafagents2 = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -64,4 +64,8 @@ $(document).ready(function(){
         });
 
 
+};
+
+$('document').ready(function(){
+    viaf_autocomplete();
 });
