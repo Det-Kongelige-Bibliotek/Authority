@@ -13,8 +13,3 @@ $(document).ready(function () {
   //  }
 
 });
-// Fill the fields in the form with 'unknown'
-function fill_unknown_fields() {
-    $('#person_given_name').val('unknown');
-    $('#person_family_name').val('unknown');
-}
