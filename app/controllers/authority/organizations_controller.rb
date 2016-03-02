@@ -58,16 +58,35 @@ module Authority
           end
         end
 
-        private
+        def viaf
+          reader = RDF::Reader.open(params[:url])
+          stats = reader.each_statement.to_a
 
-        def organization_params
-          params.require(:organization).permit( :_name, :description, :department,
-                                                :address, :globbal_location_number, alternate_names: [],
-                                                email: [], contact_point: [], telephone: [])
+          unless stats.select {|s| s.predicate == 'http://schema.org/name' }.empty?
+            org_name = stats.select {|s| s.predicate == 'http://schema.org/name' }.first.object.value
+          end
+          unless stats.select { |s| s.predicate == 'http://schema.org/alternateName' }.empty?
+            alternate_name = stats.select { |s| s.predicate == 'http://schema.org/alternateName' }.first.object.value
+          end
+          unless stats.map {|s| s if s.predicate == 'http://schema.org/sameAs' and s.object.value.include? 'http://isni.org/isni/'}.all? &:nil?
+          isni_uri = stats.map {|s| s if s.predicate == 'http://schema.org/sameAs' and
+              s.object.value.include? 'http://isni.org/isni/'}.compact.first.object.value
+          end
+
+          json_file = {:org_name => org_name, :alternate_name => alternate_name, :isni_uri => isni_uri}
+          render json: json_file.to_json
         end
+
+        private
 
         def set_organization
           @organization = ActiveFedora::Base.where(id: URI.unescape(params[:id])).first
+        end
+
+        def organization_params
+          params.require(:organization).permit( :_name, :description, :department,
+          :address, :globbal_location_number, alternate_names: [],
+          email: [], contact_point: [], telephone: [])
         end
 
   end

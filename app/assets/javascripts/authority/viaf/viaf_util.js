@@ -1,30 +1,42 @@
 // Function for importing data in the "New Person" form from VIAF
-function viafImport() {
+function viafImport(type) {
     // Create the link of the RDF record
-    var link = $('#person_same_as_uri').val() + '/rdf.xml';
-
+    var link = $('#thing_same_as_uri').val() + '/rdf.xml';
+    console.log(type);
     $.ajax({
         type: "GET",
-        // Call the viaf function from the people_controller that returns a JSON
-        url: "/authority/people/viaf",
+        // Call the viaf function from the people_controller or organizations_controller that returns a JSON
+        url: "/authority/"+type+"/viaf",
         dataType: "json",
         data: {
             // The RDF record link is passed as parameter to viaf function
             url: link
         },
         success: function(response) {
-            if (response.first_name){
-                $('#person_given_name').val(response.first_name);
-                $('#person_family_name').val(response.family_name);
-            }else{
+            console.log(link);
+            console.log("RESPONSE: "+response.first_name);
+
+            if (type == 'people'){
+                if(response.first_name){$('#person_given_name').val(response.first_name);}
+                if(response.family_name){$('#person_family_name').val(response.family_name);}
+            }
+            else if (type == 'organizations'){
+                if(response.org_name){$('#organization__name').val(response.org_name);}
+                if(response.alternate_name){$('#organization_alternate_names').val(response.alternate_name);}
+            }
+            else{
                 // If the json file is empty, an alert message appears.
                 alert("No data to import.");
             }
-            $('#person_alternate_names').val(response.alternate_name);
-            var old_field = $('#person_same_as_uri');
+
+            var old_field = $('#thing_same_as_uri');
             var new_field = old_field.clone(true);
             new_field.val(response.isni_uri);
             new_field.insertAfter(old_field);
+        }
+        ,
+        error: function (request, status, error) {
+            alert(request.responseText);
         }
     });
 }
@@ -60,7 +72,7 @@ function viaf_autocomplete(){
                 empty: '<div class="empty-message">Ingen viaf agenter fundet</div>'
             }
         }).bind('typeahead:select', function(event, suggestion) {
-            $('#person_same_as_uri').val("http://viaf.org/viaf/" + suggestion.viafid)
+            $('#thing_same_as_uri').val("http://viaf.org/viaf/" + suggestion.viafid)
         });
 
 
