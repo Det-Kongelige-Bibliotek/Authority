@@ -1,5 +1,5 @@
 <!--<h3>General</h3>-->
-<%= thing.is_a?(Authority::Organization) ? type = 'organizations' : type = 'people'%>
+<% thing.is_a?(Authority::Organization) ? type = 'organizations' : type = 'people'%>
 <div class="form-inline">
   <%= text_field thing, :same_as, :id => "myViafId" %>
   <button id='import_viaf' class="btn btn-default" type="button" onclick="viafImport('<%= type %>');">
@@ -8,11 +8,11 @@
   <% if !thing.same_as_uri.empty? %>
       <% thing.same_as_uri.each do |uri| %>
           <%= #Hidden field for the URI
-              text_field 'thing', :same_as_uri, :hidden => false, :multiple => true, :value => uri %>
+              text_field 'thing', :same_as_uri, :hidden => true, :multiple => true, :value => uri %>
       <% end %>
   <% else %>
       <%= #Hidden field for the URI
-          text_field 'thing', :same_as_uri, :hidden => false, :multiple => true %>
+          text_field 'thing', :same_as_uri, :hidden => true, :multiple => true %>
   <% end %>
 </div>
 
@@ -27,28 +27,28 @@
           <%= f.text_field :_name %>
         </td>
       </tr>
-      <tr>
-        <td>
-          <strong><%= f.label :alternate_names, 'Alternate Names:' %></strong>
-        </td>
-        <td>
-          <% if !thing.alternate_names.empty? %>
-              <% thing.alternate_names.each do |alternateN| %>
-                  <%= f.text_field :alternate_names, :multiple => true, :value => alternateN %>
-              <% end %>
-          <% else %>
-              <%= f.text_field :alternate_names, :multiple => true %>
-          <% end %>
-          <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
-        </td>
-      </tr>
   <% end %>
+  <tr>
+    <td>
+      <strong><%= f.label :alternate_names, 'Alternate Names:' %></strong>
+    </td>
+    <td>
+      <% if !thing.alternate_names.empty? %>
+          <% thing.alternate_names.each do |alternateN| %>
+              <%= f.text_field :alternate_names, :multiple => true, :value => alternateN %>
+          <% end %>
+      <% else %>
+          <%= f.text_field :alternate_names, :multiple => true %>
+      <% end %>
+      <%= button_tag "Add more", type: 'button', data: {function: 'clone-input'} %>
+    </td>
+  </tr>
   <tr>
     <td>
       <strong><%= f.label :description, 'Description:' %></strong>
     </td>
     <td>
-      <%= f.text_field  :description %>
+      <%= f.text_field :description %>
     </td>
   </tr>
   </tbody>

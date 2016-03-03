@@ -2,7 +2,6 @@
 function viafImport(type) {
     // Create the link of the RDF record
     var link = $('#thing_same_as_uri').val() + '/rdf.xml';
-    console.log(type);
     $.ajax({
         type: "GET",
         // Call the viaf function from the people_controller or organizations_controller that returns a JSON
@@ -14,11 +13,12 @@ function viafImport(type) {
         },
         success: function(response) {
             console.log(link);
-            console.log("RESPONSE: "+response.first_name);
+            console.log(response);
 
             if (type == 'people'){
                 if(response.first_name){$('#person_given_name').val(response.first_name);}
                 if(response.family_name){$('#person_family_name').val(response.family_name);}
+                if(response.alternate_name){$('#person_alternate_names').val(response.alternate_name);}
             }
             else if (type == 'organizations'){
                 if(response.org_name){$('#organization__name').val(response.org_name);}
