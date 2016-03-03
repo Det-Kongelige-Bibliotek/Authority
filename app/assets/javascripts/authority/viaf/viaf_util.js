@@ -36,7 +36,7 @@ function viafImport(type) {
         }
         ,
         error: function (request, status, error) {
-            alert(request.responseText);
+            alert('No data to import.');
         }
     });
 }
