@@ -10,9 +10,9 @@ module Authority
       q = q.downcase if q.present?
       solr_q = "typeahead_tesim:#{q}* || typeahead_tesim:#{q}"
       unless model == 'all'
-        ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:Authority*#{model}", :sort =>'display_value_ssi asc')
+        ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:Authority*#{model}", :sort =>'display_value_ssi asc', :rows => self.max_rows)
       else
-        ActiveFedora::SolrService.query(solr_q, :sort =>'display_value_ssi asc')
+        ActiveFedora::SolrService.query(solr_q, :sort =>'display_value_ssi asc', :rows => self.max_rows)
       end
     end
 

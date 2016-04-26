@@ -66,6 +66,7 @@ function viaf_autocomplete(){
          {
             name: 'ViafAgents',
             source: viafagents2,
+            limit: 9,
             displayKey: 'term',
             templates: {
                 header: '<h3 class="agent-source">VIAF</h3>',
