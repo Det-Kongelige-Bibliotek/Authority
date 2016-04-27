@@ -1,7 +1,8 @@
 // Function for importing data in the "New Person" form from VIAF
 function viafImport(type) {
     // Create the link of the RDF record
-    var link = $('#thing_same_as_uri').val() + '/rdf.xml';
+    var link = $("#viaf_id").val() + '/rdf.xml';
+    console.log(type +" link"+link);
     $.ajax({
         type: "GET",
         // Call the viaf function from the people_controller or organizations_controller that returns a JSON
@@ -29,7 +30,7 @@ function viafImport(type) {
                 alert("No data to import.");
             }
 
-            var old_field = $('#thing_same_as_uri');
+            var old_field = $("#viaf_id");
             var new_field = old_field.clone(true);
             new_field.val(response.isni_uri);
             new_field.insertAfter(old_field);
@@ -73,7 +74,7 @@ function viaf_autocomplete(){
                 empty: '<div class="empty-message">Ingen viaf agenter fundet</div>'
             }
         }).bind('typeahead:select', function(event, suggestion) {
-            $('#thing_same_as_uri').val("http://viaf.org/viaf/" + suggestion.viafid)
+            $("#viaf_id").val("http://viaf.org/viaf/" + suggestion.viafid);
         });
 
 

@@ -1,23 +1,35 @@
 <!--<h3>General</h3>-->
-<% thing.is_a?(Authority::Organization) ? type = 'organizations' : type = 'people'%>
+<% type = thing.class.name.demodulize.downcase %>
 <div class="form-inline">
-  <%= text_field thing, :same_as, :id => "myViafId" %>
-  <button id='import_viaf' class="btn btn-default" type="button" onclick="viafImport('<%= type %>');">
-    Import from VIAF
-  </button>
-  <% if !thing.same_as_uri.empty? %>
+  <% unless thing.same_as_uri.empty? %>
       <% thing.same_as_uri.each do |uri| %>
           <%= #Hidden field for the URI
-              text_field 'thing', :same_as_uri, :hidden => true, :multiple => true, :value => uri %>
+              text_field type, :same_as_uri, :hidden => true, :multiple => true, :value => uri %>
       <% end %>
   <% else %>
+      <%= text_field thing, :same_as, :id => "myViafId" %>
+      <button id='import_viaf' class="btn btn-default" type="button" onclick="viafImport('<%= type.pluralize %>');">
+        Import from VIAF
+      </button>
       <%= #Hidden field for the URI
-          text_field 'thing', :same_as_uri, :hidden => true, :multiple => true %>
+          text_field type, :same_as_uri, :id => 'viaf_id', :hidden => true, :multiple => true %>
   <% end %>
 </div>
 
 <table class="table table-striped">
   <tbody>
+  <% unless thing.same_as_uri.empty? %>
+      <tr>
+        <td>
+          <strong>Same as:</strong>
+        </td>
+        <td>
+          <% thing.same_as_uri.each do |uri| %>
+              <%= link_to(uri, uri) if uri.present? %><br>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
   <% if thing.is_a? Authority::Organization %>
       <tr>
         <td>
