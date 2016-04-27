@@ -4,6 +4,7 @@ module Authority
    include Authority::Concerns::ModalLayout
 
    class PeopleController < ApplicationController
+     authorize_resource
      before_filter do
        if params['modal'].present?
           self.class.layout  'modal' if params['modal'].present?

@@ -1,5 +1,6 @@
 module Authority
   class Organization < ::ActiveFedora::Base
+    include Hydra::AccessControls::Permissions
     include ::Authority::Concern::Thing
 
     property :address, predicate: ::RDF::Vocab::SCHEMA.address, multiple: false
