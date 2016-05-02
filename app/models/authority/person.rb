@@ -1,5 +1,6 @@
 module Authority
   class Person < ActiveFedora::Base
+    include Hydra::AccessControls::Permissions
     include ::Authority::Concern::Thing
 
 

@@ -2,6 +2,7 @@ require_dependency "authority/application_controller"
 
 module Authority
   class OrganizationsController < ApplicationController
+        authorize_resource
         before_filter do
           if params['modal'].present?
             self.class.layout  'modal' if params['modal'].present?

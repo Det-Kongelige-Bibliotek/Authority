@@ -37,7 +37,7 @@
       </td>
       <td>
         <% thing.same_as_uri.each do |uri| %>
-            <%= link_to('same as', uri) if uri.present? %>
+            <%= link_to(uri, uri) if uri.present? %><br>
         <% end %>
       </td>
     </tr>
