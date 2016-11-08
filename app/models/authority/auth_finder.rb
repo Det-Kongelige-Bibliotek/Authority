@@ -8,6 +8,7 @@ module Authority
 
     def self.all_things(q,model)
       q = q.downcase if q.present?
+      q = q + "*"
       qs = q.split(" ") if q.present?
       qs ||= []
       qs.map!{|t| "typeahead_tesim:#{t}"}
