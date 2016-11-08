@@ -10,8 +10,8 @@ module Authority
       q = q.downcase if q.present?
       qs = q.split(" ") if q.present?
       qs ||= []
-      qs.map!{|t| "type_ahead_tesim#{t}"}
-      solr_q = qs.join.(" && ")
+      qs.map!{|t| "typeahead_tesim:#{t}"}
+      solr_q = qs.join(" && ")
       unless model == 'all'
         ActiveFedora::SolrService.query(solr_q,:fq=>"active_fedora_model_ssi:Authority*#{model}", :sort =>'display_value_ssi asc', :rows => self.max_rows)
       else
