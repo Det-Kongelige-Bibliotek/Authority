@@ -55,9 +55,9 @@ module Authority
     # Create the full name of a person
     def full_name
       full = []
-      full << family_name unless family_name.blank?
-      full << additional_name unless additional_name.blank?
+      full << family_name + ", "unless family_name.blank?
       full << given_name unless given_name.blank?
+      full << additional_name unless additional_name.blank?
       full.join(" ")
     end
 
